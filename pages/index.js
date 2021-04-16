@@ -1,18 +1,19 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
 
-function Index({stars}) {
+function Index({ data }) {
   return (
-    <div>
-      <h1>Next stars: {stars}</h1>
-    </div>
-  )
+    <h1>
+      <li>Article: {data.title}</li>
+    </h1>
+  );
 }
 
-Index.getInitialProps = async ({req}) => {
-  console.log("inital props")
-  const res = await fetch('https://api.github.com/repos/zeit/next.js')
-  const json = await res.json();
-  return { starts: json.stargazers_count}
-}
+Index.getInitialProps = async ({ req }) => {
+  const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+  const { data } = res;
+  console.log(data);
+  return { data: data };
+};
 
 export default Index;
