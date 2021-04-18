@@ -9,7 +9,7 @@ function Index({ posts }) {
       <ul>
         {posts.map(({ id, title }) => (
           <li key={id}>
-            <Link href={`/posts?id=${id}`}>
+            <Link href={`/posts?id=${id}`} as={`/p/${id}`}>
               <a>Article: {title}</a>
             </Link>
           </li>
